@@ -1,4 +1,4 @@
-# Node Auth 2 Guided Project
+# Node Token Auth 2 Guided Project using jsonwebtoken to sign token when /register and verify token when /login. Token are sent in cookie from server to client.
 
 Guided project for **Node Auth 2** Module.
 
