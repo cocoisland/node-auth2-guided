@@ -1,7 +1,9 @@
 # Node Token Auth 2 Guided Project using jsonwebtoken to sign token when /register and verify token when /login. Token are sent in cookie from server to client.
 
 Guided project for **Node Auth 2** Module.
+
 Pro: servers can scale up horizontally as client token hashed password are verified when login by any servers which can compare client hashed password from local storage.
+
 Con: server can not enforce client logout.
 
 ## Prerequisites
