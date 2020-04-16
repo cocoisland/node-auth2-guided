@@ -10,11 +10,46 @@ Con: server can not enforce client logout.
 
 - [SQLite Studio](https://sqlitestudio.pl/index.rvt?act=download) installed.
 
-## Project Setup
+We can use JSON web tokens (JWTs) to add authentication to a Web API. JSON web tokens are an industry standard for transferring data between two parties.
 
-- [ ] fork and clone this repository.
-- [ ] **CD into the folder** where you cloned **your fork**.
-- [ ] type`npm i` to download dependencies.
-- [ ] type `npm run server` to start the API.
+JWTs are cryptographically signed, typically using a secret with the HMACSHA-256 algorithm.
 
-Please follow along as the instructor adds support for `JSON Web Tokens (JWT)` to the API.
+In this section we’ll look at the anatomy of a JWT.
+
+Overview
+JSON Web Tokens (JWT) are a way to transmit information between parties in the form of a JSON object. The JSON information is most commonly used for authentication and information exchange. In the former example, with authentication every JWT contains information. In the latter, JWTs contain the classic JSON data you’ve seen before.
+
+Ultimately, a JWT is a string that has three parts separated by a period (.). Those are:
+
+The header.
+The payload.
+The signature.
+Header
+The header contains the algorithm with the token type. Typically the header for a JWT looks like this.
+
+Copy
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+the alg key specifies which algorithm was used to create the token, in this case, the algorithm is HMACSHA-256, and the typ property classifies this token as being of the type JWT.
+
+Payload
+The payload includes claims (fancy name for things like permissions for the user) information or any other data we’d like to store in the token, which is most likely a user id. There are specific claims defined in the JWT standard, and you can also add custom properties to this object.
+
+An example:
+
+Copy
+{
+  "sub": "1234567890", // standard - subject, normally the user id
+  "name": "John Doe", // custom property
+  "iat": 1516239022 // standard - The Date the token was issued, expressed in seconds since epoch.
+}
+Signature
+To create a signature, we must create a string by base64 encoding the header and payload together, and then signing it with a secret.
+
+Combining all three parts, you will get a JWT that looks like this:
+
+Copy
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+Follow Along
